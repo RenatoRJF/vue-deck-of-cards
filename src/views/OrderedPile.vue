@@ -1,7 +1,7 @@
 <template>
   <Container :title="'Ordered Pile'">
     <div class="pile">
-      <Card v-for="(card, index) in cards" :key="index" :index="index" :card="card" />
+      <Card v-for="(card, index) in cards" :key="index" :index="index" :data="card" />
     </div>
 
     <div class="pile__details">
@@ -29,9 +29,14 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 import Container from "../components/Container.vue";
 import Card from "../components/Card.vue";
 import { Card as CardType } from "../types/card";
+
+import { orderCards, fullHouseCombination } from "../helpers";
+
+const pile = namespace("pile");
 
 @Component({
   components: {
@@ -44,6 +49,31 @@ export default class OrderedPile extends Vue {
   private rotationCard = "";
   private cards: CardType[] = [];
   private highestCard = "";
+
+  async mounted() {
+    const { deckId } = this.$route.params;
+
+    await this.getPiles({ deckId, pileName: "main" });
+    await this.getPiles({ deckId, pileName: "rotation" });
+
+    this.cards = orderCards(this.getDeckCards, { value: "2", suit: "H" });
+    this.rotationCard = this.getRotationCard;
+    this.highestCard = `${this.cards[0].value}${this.cards[0].suit}`;
+
+    if (this.cards.length >= 5) {
+      this.fullHouseComb = fullHouseCombination(this.cards).map(h =>
+        h.map(c => `${c.value}${c.suit}`).join(", ")
+      );
+    }
+  }
+
+  @pile.Getter
+  private getDeckCards!: CardType[];
+  @pile.Getter
+  private getRotationCard!: string;
+
+  @pile.Action
+  private getPiles!: (params: { deckId: string; pileName: string }) => void;
 }
 </script>
 

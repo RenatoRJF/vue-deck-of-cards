@@ -1,5 +1,6 @@
-import { Module, VuexModule, Action } from "vuex-module-decorators";
+import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
 import api from "../../services/api";
+import { Card } from "../../types/card";
 
 interface AddToPileProps {
   deckId: string;
@@ -9,6 +10,19 @@ interface AddToPileProps {
 
 @Module({ namespaced: true })
 export default class Pile extends VuexModule {
+  private rotationCard!: string;
+  private deckCards: Card[] = [];
+
+  @Mutation
+  public setRotationCard(rotationCard: string) {
+    this.rotationCard = rotationCard;
+  }
+
+  @Mutation
+  public setDeckCards(cards: Card[]): void {
+    this.deckCards = cards;
+  }
+
   @Action
   async addCardsToPile({ deckId, pileName, cards }: AddToPileProps) {
     try {
@@ -36,5 +50,13 @@ export default class Pile extends VuexModule {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  get getRotationCard() {
+    return this.rotationCard;
+  }
+
+  get getDeckCards() {
+    return this.deckCards;
   }
 }
