@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container.vue renders props.title when passed 1`] = `
+<div class="app__container">
+  <header>
+    <h1>Cards</h1>
+  </header>
+</div>
+`;
