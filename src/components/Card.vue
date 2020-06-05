@@ -2,13 +2,13 @@
   <div class="card">
     <div class="card__content" :style="`animation-delay: ${index / 10}s`">
       <div class="card__value-suit">
-        <span class="value">{{ card.value }}</span>
-        <img :src="getImageUrl(card.suit)" class="suit" alt="card symbol" />
+        <span class="value">{{ data.value }}</span>
+        <img :src="getImageUrl(data.suit)" class="suit" alt="card symbol" />
       </div>
 
       <div class="card__value-suit bottom">
-        <span class="value">{{ card.value }}</span>
-        <img :src="getImageUrl(card.suit)" class="suit" />
+        <span class="value">{{ data.value }}</span>
+        <img :src="getImageUrl(data.suit)" class="suit" />
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@ import { Card as CardType } from "../types/card";
 
 @Component
 export default class Card extends Vue {
-  @Prop() cards!: CardType;
+  @Prop() data!: CardType;
   @Prop() index!: number;
 
   private getImageUrl(img: string) {
