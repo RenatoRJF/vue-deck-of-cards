@@ -2,11 +2,28 @@
 
 `This small project consists in an application to analyze a set of cards provided by the user.`
 
-## Technologies
+## Example of inputs
+
+```
+User Input - Cards: 7D, AS, QH, 9S, 6D and Rotation Card: 10C
+Ordered Pile: 9S, AS, QH, 7D, 6D
+High Card: 9S
+Full House Combinations: None
+
+
+User Input - Cards: AS, AD, AC, KH, KS and Rotation Card: 2H
+Ordered Pile: KH, AD, AC, AS, KS
+High Card: KH
+Full House Combinations: AD, AC, AS, KH, KS
+```
+
+## Tech stack
 
 - Vue
 - VueX
 - Jest
+- Typescript
+- vue-class
 - js-combinations
 - axios
 - API [https://deckofcardsapi.com](https://deckofcardsapi.com/)
