@@ -1,5 +1,5 @@
 <template>
-  <form class="cards__form" @submit.prevent="onSubmit">
+  <form class="cards__form" @submit.prevent="handleSubmit">
     <p v-if="isFormEmpty" class="error__message">
       Please, fill up at least one field width a valid card.
     </p>
@@ -44,6 +44,7 @@ import { Vue, Component } from "vue-property-decorator";
 import Container from "../components/Container.vue";
 import NewDeckForm from "../components/NewDeckForm.vue";
 import { Card } from "../types/card";
+import { isCardValid } from "../helpers";
 
 @Component({
   components: {
@@ -52,15 +53,42 @@ import { Card } from "../types/card";
   }
 })
 export default class Cards extends Vue {
-  private title = "Card";
   private cardsList = [...Array(10).keys()].map(
     (): Card => ({ value: "", suit: "", isValid: true })
   );
   private rotationCard = { value: "", suit: "", isValid: true };
   private isFormEmpty = false;
+  private onSubmit!: (event: EventTarget) => void;
 
-  onSubmit() {
-    Promise.resolve();
+  async handleSubmit() {
+    const cards = this.cardsList.filter(card => card.value);
+    // Validate if form is empty
+    this.isFormEmpty = cards.length === 0;
+    if (this.isFormEmpty) return;
+
+    // validate if there is some field invalid
+    this.cardsList = this.cardsList.map(card => ({
+      ...card,
+      isValid: card.value ? isCardValid(`${card.value}${card.suit}`) : true
+    }));
+
+    if (this.cardsList.find(card => !card.isValid)) return;
+
+    // validate if rotation card is valid
+    this.rotationCard.isValid = isCardValid(`${this.rotationCard.value}${this.rotationCard.suit}`);
+
+    if (this.rotationCard.value && this.rotationCard.isValid) {
+      // add rotation card to list of cards
+      const formattedCards =
+        cards
+          .map(card => (card.value.startsWith("10") ? card.value.replace("10", "0") : card.value))
+          .join(",") + `,${this.rotationCard.value}`;
+
+      this.$emit("onSubmit", { cards: formattedCards, rotationCard: this.rotationCard.value });
+      return;
+    }
+
+    this.rotationCard.isValid = false;
   }
 }
 </script>

@@ -11,14 +11,12 @@ const routes: Array<RouteConfig> = [
   {
     path: "/deck/new",
     name: "deck-new",
-    component: () =>
-      import(/* webpackChunkName: "cards" */ "../views/NewDeck.vue")
+    component: () => import(/* webpackChunkName: "cards" */ "../views/NewDeck.vue")
   },
   {
     path: "/deck/:deckId",
     name: "ordered-pile",
-    component: () =>
-      import(/* webpackChunkName: "ordered-pile" */ "../views/OrderedPile.vue")
+    component: () => import(/* webpackChunkName: "ordered-pile" */ "../views/OrderedPile.vue")
   }
 ];
 
