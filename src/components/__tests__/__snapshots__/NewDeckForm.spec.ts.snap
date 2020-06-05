@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewDeckForm.vue renders without crashing 1`] = `
+<form class="cards__form">
+  <!---->
+  <div class="form__inputs"><label class="input__wrapper"><span>Card 1</span> <input placeholder="Enter card" tabindex="1" class="">
+      <!----></label><label class="input__wrapper"><span>Card 2</span> <input placeholder="Enter card" tabindex="2" class="">
+      <!----></label><label class="input__wrapper"><span>Card 3</span> <input placeholder="Enter card" tabindex="3" class="">
+      <!----></label><label class="input__wrapper"><span>Card 4</span> <input placeholder="Enter card" tabindex="4" class="">
+      <!----></label><label class="input__wrapper"><span>Card 5</span> <input placeholder="Enter card" tabindex="5" class="">
+      <!----></label><label class="input__wrapper"><span>Card 6</span> <input placeholder="Enter card" tabindex="6" class="">
+      <!----></label><label class="input__wrapper"><span>Card 7</span> <input placeholder="Enter card" tabindex="7" class="">
+      <!----></label><label class="input__wrapper"><span>Card 8</span> <input placeholder="Enter card" tabindex="8" class="">
+      <!----></label><label class="input__wrapper"><span>Card 9</span> <input placeholder="Enter card" tabindex="9" class="">
+      <!----></label><label class="input__wrapper"><span>Card 10</span> <input placeholder="Enter card" tabindex="10" class="">
+      <!----></label></div>
+  <div class="rotation__card">
+    <h3>Rotation Card</h3>
+    <div class="rotation__input"><input placeholder="Enter Card" tabindex="11" class="">
+      <!---->
+    </div>
+  </div> <button type="submit">Submit</button>
+</form>
+`;
