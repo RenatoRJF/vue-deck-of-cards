@@ -9,6 +9,7 @@
         <span>Card {{ index + 1 }}</span>
 
         <input
+          data-card
           v-model="cardsList[index].value"
           placeholder="Enter card"
           :tabindex="index + 1"
@@ -24,6 +25,7 @@
 
       <div class="rotation__input">
         <input
+          data-rotation-card
           placeholder="Enter Card"
           v-model="rotationCard.value"
           tabindex="11"
