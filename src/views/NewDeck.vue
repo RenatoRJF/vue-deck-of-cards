@@ -12,6 +12,7 @@ import Container from "../components/Container.vue";
 import NewDeckForm from "../components/NewDeckForm.vue";
 
 const deck = namespace("deck");
+const card = namespace("card");
 
 @Component({
   components: {
@@ -28,10 +29,14 @@ export default class Cards extends Vue {
   @deck.Action
   private createDeck!: (cards: string) => void;
 
+  @card.Action
+  private createCards!: (params: { deckId: string; cards: string }) => void;
+
   async onSubmit(event: { cards: string }) {
     const { cards } = event;
 
     await this.createDeck(cards);
+    await this.createCards({ deckId: this.getDeckId, cards });
 
     this.$router.push({ path: `/deck/${this.getDeckId}` });
   }
