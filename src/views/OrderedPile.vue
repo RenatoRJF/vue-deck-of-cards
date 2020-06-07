@@ -50,18 +50,22 @@ const pile = namespace("pile");
 })
 export default class OrderedPile extends Vue {
   private fullHouseComb: string[] = [];
-  private rotationCard = "";
+  private rotationCard = { value: "", suit: "" };
   private cards: CardType[] = [];
   private highestCard = "";
 
   async mounted() {
     const { deckId } = this.$route.params;
 
-    await this.getPiles({ deckId, pileName: "main" });
-    await this.getPiles({ deckId, pileName: "rotation" });
+    const cardsList: Array<CardType> = await this.getPiles({ deckId, pileName: "main" });
+    const res: Array<CardType> = await this.getPiles({ deckId, pileName: "rotation" });
 
-    this.cards = orderCards(this.getDeckCards, { value: "2", suit: "H" });
-    this.rotationCard = this.getRotationCard;
+    this.cards = orderCards(cardsList, { value: "2", suit: "H" });
+
+    if (res) {
+      this.rotationCard = res[0];
+    }
+
     this.highestCard = `${this.cards[0].value}${this.cards[0].suit}`;
 
     if (this.cards.length >= 5) {
@@ -71,13 +75,8 @@ export default class OrderedPile extends Vue {
     }
   }
 
-  @pile.Getter
-  private getDeckCards!: CardType[];
-  @pile.Getter
-  private getRotationCard!: string;
-
   @pile.Action
-  private getPiles!: (params: { deckId: string; pileName: string }) => void;
+  private getPiles!: (params: { deckId: string; pileName: string }) => Promise<Array<CardType>>;
 }
 </script>
 

@@ -80,13 +80,17 @@ export default class Cards extends Vue {
     this.rotationCard.isValid = isCardValid(`${this.rotationCard.value}${this.rotationCard.suit}`);
 
     if (this.rotationCard.value && this.rotationCard.isValid) {
+      const formattedRotationCard = this.rotationCard.value.startsWith("10")
+        ? this.rotationCard.value.replace("10", "0")
+        : this.rotationCard.value;
+
       // add rotation card to list of cards
       const formattedCards =
         cards
           .map(card => (card.value.startsWith("10") ? card.value.replace("10", "0") : card.value))
-          .join(",") + `,${this.rotationCard.value}`;
+          .join(",") + `,${formattedRotationCard}`;
 
-      this.$emit("onSubmit", { cards: formattedCards, rotationCard: this.rotationCard.value });
+      this.$emit("onSubmit", { cards: formattedCards, rotationCard: formattedRotationCard });
       return;
     }
 

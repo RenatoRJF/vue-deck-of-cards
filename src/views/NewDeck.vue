@@ -24,11 +24,8 @@ const pile = namespace("pile");
 export default class Cards extends Vue {
   private title = "Card";
 
-  @deck.Getter
-  private getDeckId!: string;
-
   @deck.Action
-  private createDeck!: (cards: string) => void;
+  private createDeck!: (cards: string) => Promise<string>;
 
   @card.Action
   private createCards!: (params: { deckId: string; cards: string }) => void;
@@ -39,16 +36,16 @@ export default class Cards extends Vue {
   async onSubmit(event: { cards: string; rotationCard: string }) {
     const { cards, rotationCard } = event;
 
-    await this.createDeck(cards);
-    await this.createCards({ deckId: this.getDeckId, cards });
-    await this.addCardsToPile({ deckId: this.getDeckId, pileName: "main", cards });
+    const deckId = await this.createDeck(cards);
+    await this.createCards({ deckId, cards });
+    await this.addCardsToPile({ deckId, pileName: "main", cards });
     await this.addCardsToPile({
-      deckId: this.getDeckId,
+      deckId,
       pileName: "rotation",
       cards: rotationCard
     });
 
-    this.$router.push({ path: `/deck/${this.getDeckId}` });
+    this.$router.push({ path: `/deck/${deckId}` });
   }
 }
 </script>

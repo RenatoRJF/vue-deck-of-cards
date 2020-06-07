@@ -1,4 +1,4 @@
-import { Module, VuexModule, Action, Mutation } from "vuex-module-decorators";
+import { Module, VuexModule, Action } from "vuex-module-decorators";
 import api from "../../services/api";
 import { Card } from "../../types/card";
 
@@ -10,19 +10,6 @@ interface AddToPileProps {
 
 @Module({ namespaced: true })
 export default class Pile extends VuexModule {
-  private rotationCard!: string;
-  private deckCards: Card[] = [];
-
-  @Mutation
-  public setRotationCard(rotationCard: string) {
-    this.rotationCard = rotationCard;
-  }
-
-  @Mutation
-  public setDeckCards(cards: Card[]): void {
-    this.deckCards = cards;
-  }
-
   @Action
   async addCardsToPile({ deckId, pileName, cards }: AddToPileProps) {
     try {
@@ -33,7 +20,7 @@ export default class Pile extends VuexModule {
   }
 
   @Action
-  async getPiles({ deckId, pileName }: { deckId: string; pileName: string }) {
+  async getPiles({ deckId, pileName }: { deckId: string; pileName: string }): Promise<Array<Card>> {
     try {
       const { data } = await api.get(`deck/${deckId}/pile/${pileName}/list`);
       const cards = data.piles[pileName].cards.map((card: { code: string }) => ({
@@ -41,22 +28,9 @@ export default class Pile extends VuexModule {
         suit: card.code.charAt(2) || card.code.charAt(1)
       }));
 
-      if (pileName === "main") {
-        this.context.commit("setDeckCards", cards);
-        return;
-      }
-
-      this.context.commit("setRotationCard", cards[0]);
+      return cards;
     } catch (error) {
       throw new Error(error);
     }
-  }
-
-  get getRotationCard() {
-    return this.rotationCard;
-  }
-
-  get getDeckCards() {
-    return this.deckCards;
   }
 }
