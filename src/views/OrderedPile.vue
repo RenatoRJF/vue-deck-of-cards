@@ -1,30 +1,34 @@
 <template>
-  <Container :title="'Ordered Pile'">
-    <div class="pile">
-      <Card v-for="(card, index) in cards" :key="index" :index="index" :data="card" />
-    </div>
+  <div>
+    <router-link to="/">New Deck</router-link>
 
-    <div class="pile__details">
-      <h3>Rotation Card: {{ rotationCard.value }}{{ rotationCard.suit }}</h3>
+    <Container :title="'Ordered Pile'">
+      <div class="pile">
+        <Card v-for="(card, index) in cards" :key="index" :index="index" :data="card" />
+      </div>
 
-      <h3>High Card: {{ highestCard }}</h3>
+      <div class="pile__details">
+        <h3>Rotation Card: {{ rotationCard.value }}{{ rotationCard.suit }}</h3>
 
-      <div class="full__house-combination">
-        <h3 v-if="fullHouseComb.length === 0">Full House Combo: None</h3>
-        <div v-else>
-          <h3>Full House Combo:</h3>
+        <h3>High Card: {{ highestCard }}</h3>
 
-          <ul class="comnination__list">
-            <li v-for="combination in fullHouseComb" :key="combination">{{ combination }}</li>
-          </ul>
+        <div class="full__house-combination">
+          <h3 v-if="fullHouseComb.length === 0">Full House Combo: None</h3>
+          <div v-else>
+            <h3>Full House Combo:</h3>
 
-          <p>
-            <strong>{{ fullHouseComb.length }}</strong> combinations
-          </p>
+            <ul class="comnination__list">
+              <li v-for="combination in fullHouseComb" :key="combination">{{ combination }}</li>
+            </ul>
+
+            <p>
+              <strong>{{ fullHouseComb.length }}</strong> combinations
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </Container>
+    </Container>
+  </div>
 </template>
 
 <script lang="ts">
