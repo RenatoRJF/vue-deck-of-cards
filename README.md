@@ -2,7 +2,7 @@
 
 `This small project consists in an application to analyze a set of cards provided by the user.`
 
-See [DEMO](https://5edd2ba2572baa00074441c2--pedantic-haibt-e65a21.netlify.app/deck/new)
+See [DEMO](https://5edd42b70d29840008960fb9--pedantic-haibt-e65a21.netlify.app/deck/new)
 
 ## Example of inputs
 
