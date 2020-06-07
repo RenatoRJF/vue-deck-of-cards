@@ -9,7 +9,7 @@
         <span>Card {{ index + 1 }}</span>
 
         <input
-          data-card
+          :id="'input' + index"
           v-model="cardsList[index].value"
           placeholder="Enter card"
           :tabindex="index + 1"
@@ -25,7 +25,7 @@
 
       <div class="rotation__input">
         <input
-          data-rotation-card
+          id="rotation"
           placeholder="Enter Card"
           v-model="rotationCard.value"
           tabindex="11"
@@ -62,7 +62,7 @@ export default class Cards extends Vue {
   private isFormEmpty = false;
   private onSubmit!: (event: EventTarget) => void;
 
-  async handleSubmit() {
+  public async handleSubmit() {
     const cards = this.cardsList.filter(card => card.value);
     // Validate if form is empty
     this.isFormEmpty = cards.length === 0;

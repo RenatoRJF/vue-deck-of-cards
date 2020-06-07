@@ -1,22 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NewDeckForm.vue renders without crashing 1`] = `
+exports[`NewDeckForm.vue empty form show required error message 1`] = `
 <form class="cards__form">
-  <!---->
-  <div class="form__inputs"><label class="input__wrapper"><span>Card 1</span> <input data-card="" placeholder="Enter card" tabindex="1" class="">
-      <!----></label><label class="input__wrapper"><span>Card 2</span> <input data-card="" placeholder="Enter card" tabindex="2" class="">
-      <!----></label><label class="input__wrapper"><span>Card 3</span> <input data-card="" placeholder="Enter card" tabindex="3" class="">
-      <!----></label><label class="input__wrapper"><span>Card 4</span> <input data-card="" placeholder="Enter card" tabindex="4" class="">
-      <!----></label><label class="input__wrapper"><span>Card 5</span> <input data-card="" placeholder="Enter card" tabindex="5" class="">
-      <!----></label><label class="input__wrapper"><span>Card 6</span> <input data-card="" placeholder="Enter card" tabindex="6" class="">
-      <!----></label><label class="input__wrapper"><span>Card 7</span> <input data-card="" placeholder="Enter card" tabindex="7" class="">
-      <!----></label><label class="input__wrapper"><span>Card 8</span> <input data-card="" placeholder="Enter card" tabindex="8" class="">
-      <!----></label><label class="input__wrapper"><span>Card 9</span> <input data-card="" placeholder="Enter card" tabindex="9" class="">
-      <!----></label><label class="input__wrapper"><span>Card 10</span> <input data-card="" placeholder="Enter card" tabindex="10" class="">
+  <p class="error__message">
+    Please, fill up at least one field width a valid card.
+  </p>
+  <div class="form__inputs"><label class="input__wrapper"><span>Card 1</span> <input id="input0" placeholder="Enter card" tabindex="1" class="">
+      <!----></label><label class="input__wrapper"><span>Card 2</span> <input id="input1" placeholder="Enter card" tabindex="2" class="">
+      <!----></label><label class="input__wrapper"><span>Card 3</span> <input id="input2" placeholder="Enter card" tabindex="3" class="">
+      <!----></label><label class="input__wrapper"><span>Card 4</span> <input id="input3" placeholder="Enter card" tabindex="4" class="">
+      <!----></label><label class="input__wrapper"><span>Card 5</span> <input id="input4" placeholder="Enter card" tabindex="5" class="">
+      <!----></label><label class="input__wrapper"><span>Card 6</span> <input id="input5" placeholder="Enter card" tabindex="6" class="">
+      <!----></label><label class="input__wrapper"><span>Card 7</span> <input id="input6" placeholder="Enter card" tabindex="7" class="">
+      <!----></label><label class="input__wrapper"><span>Card 8</span> <input id="input7" placeholder="Enter card" tabindex="8" class="">
+      <!----></label><label class="input__wrapper"><span>Card 9</span> <input id="input8" placeholder="Enter card" tabindex="9" class="">
+      <!----></label><label class="input__wrapper"><span>Card 10</span> <input id="input9" placeholder="Enter card" tabindex="10" class="">
       <!----></label></div>
   <div class="rotation__card">
     <h3>Rotation Card</h3>
-    <div class="rotation__input"><input data-rotation-card="" placeholder="Enter Card" tabindex="11" class="">
+    <div class="rotation__input"><input id="rotation" placeholder="Enter Card" tabindex="11" class="">
+      <!---->
+    </div>
+  </div> <button type="submit">Submit</button>
+</form>
+`;
+
+exports[`NewDeckForm.vue form filled up show \`invalid card\` error message 1`] = `
+<form class="cards__form">
+  <!---->
+  <div class="form__inputs"><label class="input__wrapper"><span>Card 1</span> <input id="input0" placeholder="Enter card" tabindex="1" class="error">
+      <p class="input__error-message">Invalid card</p>
+    </label><label class="input__wrapper"><span>Card 2</span> <input id="input1" placeholder="Enter card" tabindex="2" class="">
+      <!----></label><label class="input__wrapper"><span>Card 3</span> <input id="input2" placeholder="Enter card" tabindex="3" class="">
+      <!----></label><label class="input__wrapper"><span>Card 4</span> <input id="input3" placeholder="Enter card" tabindex="4" class="">
+      <!----></label><label class="input__wrapper"><span>Card 5</span> <input id="input4" placeholder="Enter card" tabindex="5" class="">
+      <!----></label><label class="input__wrapper"><span>Card 6</span> <input id="input5" placeholder="Enter card" tabindex="6" class="">
+      <!----></label><label class="input__wrapper"><span>Card 7</span> <input id="input6" placeholder="Enter card" tabindex="7" class="">
+      <!----></label><label class="input__wrapper"><span>Card 8</span> <input id="input7" placeholder="Enter card" tabindex="8" class="">
+      <!----></label><label class="input__wrapper"><span>Card 9</span> <input id="input8" placeholder="Enter card" tabindex="9" class="">
+      <!----></label><label class="input__wrapper"><span>Card 10</span> <input id="input9" placeholder="Enter card" tabindex="10" class="">
+      <!----></label></div>
+  <div class="rotation__card">
+    <h3>Rotation Card</h3>
+    <div class="rotation__input"><input id="rotation" placeholder="Enter Card" tabindex="11" class="">
+      <!---->
+    </div>
+  </div> <button type="submit">Submit</button>
+</form>
+`;
+
+exports[`NewDeckForm.vue form filled up update props values when form is filled 1`] = `
+<form class="cards__form">
+  <!---->
+  <div class="form__inputs"><label class="input__wrapper"><span>Card 1</span> <input id="input0" placeholder="Enter card" tabindex="1" class="">
+      <!----></label><label class="input__wrapper"><span>Card 2</span> <input id="input1" placeholder="Enter card" tabindex="2" class="">
+      <!----></label><label class="input__wrapper"><span>Card 3</span> <input id="input2" placeholder="Enter card" tabindex="3" class="">
+      <!----></label><label class="input__wrapper"><span>Card 4</span> <input id="input3" placeholder="Enter card" tabindex="4" class="">
+      <!----></label><label class="input__wrapper"><span>Card 5</span> <input id="input4" placeholder="Enter card" tabindex="5" class="">
+      <!----></label><label class="input__wrapper"><span>Card 6</span> <input id="input5" placeholder="Enter card" tabindex="6" class="">
+      <!----></label><label class="input__wrapper"><span>Card 7</span> <input id="input6" placeholder="Enter card" tabindex="7" class="">
+      <!----></label><label class="input__wrapper"><span>Card 8</span> <input id="input7" placeholder="Enter card" tabindex="8" class="">
+      <!----></label><label class="input__wrapper"><span>Card 9</span> <input id="input8" placeholder="Enter card" tabindex="9" class="">
+      <!----></label><label class="input__wrapper"><span>Card 10</span> <input id="input9" placeholder="Enter card" tabindex="10" class="">
+      <!----></label></div>
+  <div class="rotation__card">
+    <h3>Rotation Card</h3>
+    <div class="rotation__input"><input id="rotation" placeholder="Enter Card" tabindex="11" class="">
+      <!---->
+    </div>
+  </div> <button type="submit">Submit</button>
+</form>
+`;
+
+exports[`NewDeckForm.vue renders without crashing 1`] = `
+<form class="cards__form">
+  <!---->
+  <div class="form__inputs"><label class="input__wrapper"><span>Card 1</span> <input id="input0" placeholder="Enter card" tabindex="1" class="">
+      <!----></label><label class="input__wrapper"><span>Card 2</span> <input id="input1" placeholder="Enter card" tabindex="2" class="">
+      <!----></label><label class="input__wrapper"><span>Card 3</span> <input id="input2" placeholder="Enter card" tabindex="3" class="">
+      <!----></label><label class="input__wrapper"><span>Card 4</span> <input id="input3" placeholder="Enter card" tabindex="4" class="">
+      <!----></label><label class="input__wrapper"><span>Card 5</span> <input id="input4" placeholder="Enter card" tabindex="5" class="">
+      <!----></label><label class="input__wrapper"><span>Card 6</span> <input id="input5" placeholder="Enter card" tabindex="6" class="">
+      <!----></label><label class="input__wrapper"><span>Card 7</span> <input id="input6" placeholder="Enter card" tabindex="7" class="">
+      <!----></label><label class="input__wrapper"><span>Card 8</span> <input id="input7" placeholder="Enter card" tabindex="8" class="">
+      <!----></label><label class="input__wrapper"><span>Card 9</span> <input id="input8" placeholder="Enter card" tabindex="9" class="">
+      <!----></label><label class="input__wrapper"><span>Card 10</span> <input id="input9" placeholder="Enter card" tabindex="10" class="">
+      <!----></label></div>
+  <div class="rotation__card">
+    <h3>Rotation Card</h3>
+    <div class="rotation__input"><input id="rotation" placeholder="Enter Card" tabindex="11" class="">
       <!---->
     </div>
   </div> <button type="submit">Submit</button>
